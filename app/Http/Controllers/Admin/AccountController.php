@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Pangkat;
 use App\User;
-
+use App\Exports\UserExport;
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 class AccountController extends Controller
 {
-
     public function index()
     {
         $account = User::where('id', '!=', auth()->user()->id)->whereIn('role', ['0', '1'])->paginate(5);
@@ -104,7 +105,7 @@ class AccountController extends Controller
                 $thumbnail = request()->file('avatar')->store("images/avatar");
             } else {
                 $thumbnail = null;
-            }
+            }  
         } else {
             if (request()->file('avatar')) {
                 \Storage::delete($user->avatar);
@@ -127,8 +128,16 @@ class AccountController extends Controller
         $user->delete();
         return back();
     }
-    public function search($data)
+    public function userExportExcel()
     {
-        echo $data[0];
+        return Excel::download(new UserExport, 'user.xlsx');
+    }
+    public function userExportPdf()
+    {
+        $user = User::where('role',2)->get();
+        $pdf = PDF::loadview('admin.account.report_user_pdf',[
+            'user' => $user
+        ]);
+        return $pdf->stream('report_user_pdf');
     }
 }

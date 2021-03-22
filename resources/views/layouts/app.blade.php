@@ -105,6 +105,7 @@
     <!-- Plugins JS end-->
     <!-- Theme js-->
     <script src="{{ asset('assets/js/script.js') }}"></script>
+    <!-- Data Table-->
     <!-- login js-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Plugin used-->

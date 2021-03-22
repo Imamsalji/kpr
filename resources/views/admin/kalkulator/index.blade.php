@@ -8,21 +8,22 @@
                     <h5>Kalkulator KPR</h5>
                 </div>
                 <div class="card-body">
-                  <form class="needs-validation" novalidate="">
+                  <form class="needs-validation" method="post" action="{{ route('hitung') }}" novalidate="">
+                    @csrf
                     <div class="row">
                       <div class="col-md-4 mb-3">
                         <label for="validationCustom01">Jumlah Pinjaman</label>
-                        <input class="form-control" id="validationCustom01" type="text" placeholder="Jumlah Pinjaman" required="">
+                        <input class="form-control" id="validationCustom01" type="text" name="besar_pinjam" placeholder="Jumlah Pinjaman" required="">
                       </div>
                       <div class="col-md-4 mb-3">
                         <label for="validationCustom02">Lama Angsuran (Bulan)</label>
-                        <input class="form-control" id="validationCustom02" type="text" placeholder="Lama Angsuran (Bulan)" required="">
+                        <input class="form-control" id="validationCustom02" type="text" name="jangka" placeholder="Lama Angsuran (Bulan)" required="">
                       </div>
                       <div class="col-md-4 mb-3">
                         <label for="validationCustomUsername">Bunga</label>
                         <div class="input-group">
                           <div class="input-group-prepend"><span class="input-group-text" id="inputGroupPrepend">%</span></div>
-                          <input class="form-control" id="validationCustomUsername" type="text" placeholder="Bunga" aria-describedby="inputGroupPrepend" required="">
+                          <input class="form-control" id="validationCustomUsername" name="bunga" type="text" placeholder="Bunga" aria-describedby="inputGroupPrepend" required="">
                         </div>
                       </div>
                     </div>

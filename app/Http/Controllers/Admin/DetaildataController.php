@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Pinjaman;
+use App\{Pinjaman,Detailkpr};
 
 class DetaildataController extends Controller
 {
@@ -31,14 +31,21 @@ class DetaildataController extends Controller
     public function getindex($approve)
     {
         if ($approve == 'approve') {
-            $pinjams = Pinjaman::where('status', 1)->get();
+            $pinjams = Detailkpr::where('status', 1)->orderBy('id', 'ASC')->paginate(20);
             return view('admin.datapinjaman.approve.index', compact('pinjams'));
         }
         if ($approve == 'pending') {
-            $pinjams = Pinjaman::where('status', 0)->get();
+            $pinjams = Detailkpr::where('status', 0)->orderBy('id', 'ASC')->paginate(20);
             return view('admin.datapinjaman.pending.index', compact('pinjams'));
         }
     }
+
+    public function show($id)
+    {
+        $kpr = Detailkpr::find($id);
+        return view('admin.datapinjaman.approve.show',compact('kpr'));
+    }
+
     public function statusupdate($id)
     {
         $pinjam = Pinjaman::findOrFail($id);
@@ -57,7 +64,7 @@ class DetaildataController extends Controller
     }
     public function cari($id)
     {
-        $id = Pinjaman::where('name', 'like', "%" . $id . "%")->get();
+        $id = Pinjaman::with(['user'])->where('nama', 'Admin')->get();
         return view('admin.datapinjaman.approve.index', compact('pinjams'));
     }
 }

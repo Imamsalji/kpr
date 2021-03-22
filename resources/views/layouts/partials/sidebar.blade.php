@@ -67,7 +67,15 @@
                     </li>
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
                             href="{{ route('kalkulator') }}"><i data-feather="dollar-sign"></i><span>Kalkulator
-                                KPR</span></a></li>
+                                KPR</span></a>
+                            </li>
+                    <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="dollar-sign"></i><span>pinjaman KPR</span>
+                    </a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="">Pengajuan Pinjaman</a></li>
+                            <li><a href="#">Angsuran</a></li>
+                        </ul>
+                    </li>
                     {{-- @endif --}}
                     <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i
                                 data-feather="user"></i><span>My Profile</span>

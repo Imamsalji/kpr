@@ -18,18 +18,20 @@ class CreateKprTable extends Migration
             $table->string('nama');
             $table->string('pangkat');
             $table->string('corps')->nullable();
-            $table->integer('nrp');
+            $table->biginteger('nrp');
             $table->string('kesatuan');
-            $table->integer('tahap');
-            $table->integer('pinjaman');
-            $table->integer('jk_waktu');
+            $table->biginteger('tahap');
+            $table->biginteger('pinjaman');
+            $table->biginteger('jk_waktu');
             $table->string('tmt_angsuran');
-            $table->integer('jml_angs');
-            $table->integer('angs_ke');
+            $table->biginteger('jml_angs');
+            $table->biginteger('angs_ke');
             $table->string('angsuran_masuk')->nullable();
-            $table->integer('tunggakan');
-            $table->integer('jml_tunggakan');
-            $table->string('keterangan');
+            $table->biginteger('tunggakan');
+            $table->biginteger('jml_tunggakan');
+            $table->text('keterangan');
+            $table->boolean('status');
+
         });
     }
 
